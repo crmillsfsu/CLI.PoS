@@ -8,51 +8,39 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            var itemList = new List<Item>();
+			var studentMenuHelper = new StudentMenuHelper();
+            var teacherMenuHelper = new TeacherMenuHelper();
+			bool appRunning = true;
 
-            Console.WriteLine("Choose one of the following:");
-            Console.WriteLine("1. Administrator");
-            Console.WriteLine("2. User");
-
-            var choice = Console.ReadLine();
-            if(int.TryParse(choice, out int choiceInt))
+            while (appRunning)
             {
-                switch (choiceInt)
+                Console.WriteLine("Choose one of the following:");
+                Console.WriteLine("1. Teacher");
+                Console.WriteLine("2. Student");
+                Console.WriteLine("3. Exit");
+
+                var choice = Console.ReadLine();
+                if (int.TryParse(choice, out int choiceInt))
                 {
-                    case 1:
-                        Console.WriteLine("Admin Menu");
-
-                        Console.WriteLine("Name:");
-                        var name = Console.ReadLine();
-                        Console.WriteLine("Description:");
-                        var description = Console.ReadLine();
-
-                        var item = new Item { 
-                        Name = name, Description = description
-                        };
-
-                        Console.WriteLine(item);
-
-
-                        break;
-                    case 2:
-                        Console.WriteLine("User Menu");
-                        break;
-                    default:
-                        Console.WriteLine("ERROR: Unknown User Type");
-                        break;
+                    switch (choiceInt)
+                    {
+                        case 1:
+                            Console.WriteLine("Teacher Menu");
+                            teacherMenuHelper.PrintTeacherMenu();
+							break;
+                        case 2:
+                            Console.WriteLine("Student Menu");
+                            studentMenuHelper.PrintStudentMenu();
+							break;
+                        case 3:
+                            appRunning = false;
+                            break;
+                        default:
+                            Console.WriteLine("ERROR: Unknown User Type");
+                            break;
+                    }
                 }
-
-               
             }
-
-
-            
-        }
-    
-        static void PrintStudentMenu()
-        {
-
         }
     }
 }
