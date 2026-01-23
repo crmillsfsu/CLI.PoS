@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CLI.PoS.Model
 {
@@ -10,5 +8,9 @@ namespace CLI.PoS.Model
 		public string? Code { get; set; }
 		public string? Name { get; set; }
 		public string? Description { get; set; }
+
+		public List<Student> Roster { get; set; } = new();
+		public List<Module> Modules { get; set; } = new();
+		public List<Assignment> Assignments { get; set; } = new();
 	}
 }

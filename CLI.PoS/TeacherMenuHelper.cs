@@ -18,6 +18,7 @@ namespace CLI.PoS
 				Console.WriteLine("\nTeacher Menu:");
 				Console.WriteLine("1. Add new course");
 				Console.WriteLine("2. Select existing course");
+				Console.WriteLine("3. Select a student to proxy")
 				Console.WriteLine("0. Exit to main menu");
 
 				var choice = Console.ReadLine();
@@ -31,6 +32,9 @@ namespace CLI.PoS
 						case 2:
 							SelectCourse();
 							break;
+						case 3:
+							ProxyStudent();
+							break;
 						case 0:
 							running = false;
 							break;
@@ -42,20 +46,28 @@ namespace CLI.PoS
 			}
 		}
 
-		AddCourse()
+		private void AddCourse()
 		{
-			Console.Write("Enter course name: ");
-			var courseName = Console.ReadLine();
-			if (!string.IsNullOrWhiteSpace(courseName))
+			Console.WriteLine("Course Name:");
+			var name = Console.ReadLine();
+
+			Console.WriteLine("Course Code:");
+			var code = Console.ReadLine();
+
+			Console.WriteLine("Course Description:");
+			var description = Console.ReadLine();
+
+			var course = new Course
 			{
-				var newCourse = new Course { Name = courseName };
-				courses.Add(newCourse);
-				Console.WriteLine($"Course '{courseName}' added.");
-			}
-			else
-			{
-				Console.WriteLine("Course name cannot be empty.");
-			}
+				Id = courses.Count + 1, // just for now
+				Name = name,
+				Code = code,
+				Description = description
+			};
+
+			courses.Add(course);
+
+			Console.WriteLine("Course added successfully.");
 		}
 	}
 }
