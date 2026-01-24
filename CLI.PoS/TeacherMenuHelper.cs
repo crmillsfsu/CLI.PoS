@@ -19,6 +19,7 @@ namespace CLI.PoS
 				Console.WriteLine("1. Add new course");
 				Console.WriteLine("2. Select existing course");
 				Console.WriteLine("3. Select a student to proxy")
+				Console.WriteLine("4. Delete a course");
 				Console.WriteLine("0. Exit to main menu");
 
 				var choice = Console.ReadLine();
@@ -30,10 +31,13 @@ namespace CLI.PoS
 							AddCourse();
 							break;
 						case 2:
-							SelectCourse();
+							//SelectCourse();
 							break;
 						case 3:
-							ProxyStudent();
+							//ProxyStudent();
+							break;
+						case 4:
+							DeleteCourse(courses);
 							break;
 						case 0:
 							running = false;
@@ -68,6 +72,36 @@ namespace CLI.PoS
 			courses.Add(course);
 
 			Console.WriteLine("Course added successfully.");
+		}
+
+		private void DeleteCourse(List<Course> courses)
+		{
+			if (courses.Count == 0)
+			{
+				Console.WriteLine("No courses available to delete.");
+				return;
+			}
+
+			Console.WriteLine("Enter the Id of the course to delete:");
+			int id;
+			if (!int.TryParse(Console.ReadLine(), out id))
+			{
+				Console.WriteLine("Invalid input.");
+				return;
+			}
+
+			var course = courses.FirstOrDefault(c => c.Id == id);
+			if (course == null)
+			{
+				Console.WriteLine("Course not found.");
+				return;
+			}
+
+			// Stub: remove the course from the list
+			courses.Remove(course);
+
+			// Note for later: enrolled students remain intact
+			Console.WriteLine($"Course '{course.Name}' deleted (students not affected).");
 		}
 	}
 }

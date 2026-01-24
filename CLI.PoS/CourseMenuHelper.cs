@@ -7,8 +7,8 @@ namespace CLI.PoS
 {
 	internal class CourseMenuHelper
 	{
-		private List<Assignment> assignments = new List<Assignment>(); // link somehow if not already
-		private <List<Submission> submissions = new List<Submission>();
+		private ModuleMenuHelper moduleMenuHelper = new ModuleMenuHelper();
+		private AssignmementMenuHelper assignmentMenuHelper = new AssignmentMenuHelper();
 
 		public void PrintCourseMenu(Course course, bool isTeacher)
 		{
@@ -30,8 +30,10 @@ namespace CLI.PoS
 
 				if (isTeacher)
 				{
-					Console.WriteLine("7. Add assignment");
-					Console.WriteLine("8. Unenroll a student");
+					Console.WriteLine("7. Manage Assignments");
+					Console.WriteLine("8. Manage Modules");
+					Console.WriteLine("9. Unenroll a Student");
+					Console.WriteLine("10. Update Course Description");
 				}
 
 				Console.WriteLine("0. Back");
@@ -42,27 +44,40 @@ namespace CLI.PoS
 					switch (choiceInt)
 					{
 						case 1:
-							AddCourse();
+							//ViewModules();
 							break;
 						case 2:
-							SelectCourse();
+							//ViewAssignments();
 							break;
 						case 3:
-							ProxyStudent();
+							//ViewStudents();
+							break;
+						case 4:
+							//CourseSchedule();
 							break;
 						case 5:
 							SubmitAssignment();
+							break;
 						case 6:
 							Console.WriteLine("Unenroll from course (not implemented yet)");
 							UnenrollStudent();
 							break;
 						case 7:
-							Console.WriteLine("Add Assignment: (not implemented yet)");
-							AddAssignment();
+							Console.WriteLine("Assignment Menu: (not implemented yet)");
+							assignmentMenuHelper.PrintAssignmentMenu(course);
+							break;
+						case 8:
+							moduleMenuHelper.PrintModuleMenu(course);
+							break;
+						case 9:
+							UnenrollStudent();
+							break;
+						case 10:
+							UpdateCourseDescription(courses);
 							break;
 						case 0:
 							running = false;
-							PrintStudentMenu();
+							return;
 						default:
 							Console.WriteLine("Unknown choice.");
 							break;
@@ -71,30 +86,6 @@ namespace CLI.PoS
 			}
 		}
 
-		private void UnenrollStudent()
-		{
-			Console.WriteLine("Unenroll logic coming in a future sprint.");
-		}
-
-		private void AddAssignment()
-		{
-			Console.WriteLine("Assignment Name:");
-			var name = Console.ReadLine();
-
-			Console.WriteLine("Assignment Description:");
-			var description = Console.ReadLine();
-
-			var assignment = new Assignment
-			{
-				Id = assignments.Count + 1, // just for now
-				Name = name,
-				Description = description
-			};
-
-			assignments.Add(assignment);
-
-			Console.WriteLine("Assignment added successfully.");
-		}
 
 		private void SubmitAssignment()
 		{
@@ -107,10 +98,46 @@ namespace CLI.PoS
 				Content = content
 			};
 
-			submissions.Add(submission);
+			submissions.Add(submission); // just for now, broken/doesnt exist
 
 			Console.WriteLine("Assignment successfully turned in.");
 		}
 
+		private void UnenrollStudent()
+		{
+			Console.WriteLine("Unenroll logic coming in a future sprint.");
+		}
+
+		private void UpdateCourseDescription(List<Course> courses)
+		{
+			if (courses.Count == 0)
+			{
+				Console.WriteLine("No courses available.");
+				return;
+			}
+
+			Console.WriteLine("Enter the Id of the course to update:");
+			int id;
+			if (!int.TryParse(Console.ReadLine(), out id))
+			{
+				Console.WriteLine("Invalid input.");
+				return;
+			}
+
+			var course = courses.FirstOrDefault(c => c.Id == id);
+			if (course == null)
+			{
+				Console.WriteLine("Course not found.");
+				return;
+			}
+
+			Console.WriteLine($"Current description: {course.Description}");
+			Console.Write("New description: ");
+			var newDesc = Console.ReadLine();
+
+			// Stub: just update the description
+			course.Description = newDesc;
+			Console.WriteLine("Course description updated.");
+		}
 	}
 }
