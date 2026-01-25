@@ -8,6 +8,7 @@ namespace CLI.PoS
 	internal class TeacherMenuHelper
 	{
 		private List<Course> courses = new List<Course>();
+		private CourseMenuHelper courseMenuHelper = new CourseMenuHelper();
 
 		public void PrintTeacherMenu()
 		{
@@ -31,7 +32,7 @@ namespace CLI.PoS
 							AddCourse();
 							break;
 						case 2:
-							//SelectCourse();
+							SelectCourse();
 							break;
 						case 3:
 							//ProxyStudent();
@@ -72,6 +73,37 @@ namespace CLI.PoS
 			courses.Add(course);
 
 			Console.WriteLine("Course added successfully.");
+		}
+
+		private void SelectCourse() {
+			if (courses.Count == 0)
+			{
+				Console.WriteLine("No courses available.");
+				return;
+			}
+
+			Console.WriteLine("Available Courses:");
+			foreach (var course in courses)
+			{
+				Console.WriteLine($"{course.Id}: {course.Name} ({course.Code})");
+			}
+
+			Console.Write("Enter the course Id to select: ");
+			if (!int.TryParse(Console.ReadLine(), out int courseId))
+			{
+				Console.WriteLine("Invalid input.");
+				return;
+			}
+
+			var selectedCourse = courses.FirstOrDefault(c => c.Id == courseId);
+			if (selectedCourse == null)
+			{
+				Console.WriteLine("Course not found.");
+				return;
+			}
+
+			// Call the course menu as teacher
+			courseMenuHelper.PrintCourseMenu(selectedCourse, isTeacher: true);
 		}
 
 		private void DeleteCourse(List<Course> courses)

@@ -8,6 +8,7 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
+
 			var studentMenuHelper = new StudentMenuHelper();
             var teacherMenuHelper = new TeacherMenuHelper();
 			bool appRunning = true;

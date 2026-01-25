@@ -6,9 +6,10 @@ namespace CLI.PoS
 {
     internal class StudentMenuHelper
     {
-        public void PrintStudentMenu()
+		private CourseMenuHelper courseMenuHelper = new CourseMenuHelper();
+
+		public void PrintStudentMenu()
         {
-			var studentMenuHelper = new StudentMenuHelper();
 			bool running = true;
 
 			while (running)
@@ -23,10 +24,9 @@ namespace CLI.PoS
 					switch (choiceInt)
 					{
 						case 1:
-							PrintCourseMenu();
+							ShowStudentCourses(student, allCourses);
 							break;
 						case 0:
-							studentMenuHelper.PrintStudentMenu
 							running = false;
 							break;
 						default:
@@ -36,5 +36,35 @@ namespace CLI.PoS
 				}
 			}
 		}
-    }
+
+		private void ShowStudentCourses(Student student, List<Course> allCourses) {
+			// Find all courses the student is enrolled in
+			var myCourses = allCourses.Where(c => c.Roster.Contains(student)).ToList();
+
+			if (myCourses.Count == 0)
+			{
+				Console.WriteLine("You are not enrolled in any courses.");
+				return;
+			}
+
+			Console.WriteLine("Your courses:");
+			foreach (var course in myCourses)
+			{
+				Console.WriteLine($"{course.Id}: {course.Name} ({course.Code})");
+			}
+
+			Console.Write("Enter course Id to open: ");
+			if (!int.TryParse(Console.ReadLine(), out int courseId)) return;
+
+			var selectedCourse = myCourses.FirstOrDefault(c => c.Id == courseId);
+			if (selectedCourse == null)
+			{
+				Console.WriteLine("Course not found.");
+				return;
+			}
+
+			// Enter course menu as student
+			courseMenuHelper.PrintCourseMenu(selectedCourse, isTeacher: false);
+		}
+	}
 }
