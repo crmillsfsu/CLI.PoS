@@ -1,5 +1,6 @@
 ﻿using CLI.PoS;
 using CLI.PoS.Model;
+using Library.PoS.Services;
 using System;
 
 namespace MyApp
@@ -8,7 +9,7 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            var itemList = new List<Item>();
+            var list = ItemServiceProxy.Current.Items;
 
             Console.WriteLine("Choose one of the following:");
             Console.WriteLine("1. Administrator");
@@ -35,7 +36,7 @@ namespace MyApp
                         };
 
                         Console.WriteLine(item);
-
+                        list.Add(item);
 
                         break;
                     case 2:
