@@ -1,5 +1,6 @@
 ﻿using CLI.PoS.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -42,6 +43,24 @@ namespace Library.PoS.Services
         }
         private ItemServiceProxy() { 
             items = new List<Item>();
+        }
+
+        public void Add(Item item)
+        {
+            item.Id = NextKey;
+            Items.Add(item);
+        }
+
+        public int NextKey
+        {
+            get
+            {
+                if(Items.Any())
+                {
+                    return Items.Select(i => i.Id).Max() + 1;
+                }
+                return 1;
+            }
         }
 
     }

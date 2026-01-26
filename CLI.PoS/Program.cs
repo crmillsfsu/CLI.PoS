@@ -34,10 +34,9 @@ namespace MyApp
                         var item = new Item { 
                         Name = name, Description = description, Price = decimal.Parse(price)
                         };
+                        ItemServiceProxy.Current.Add(item);
 
                         Console.WriteLine(item);
-                        list.Add(item);
-
                         break;
                     case 2:
                         Console.WriteLine("User Menu");
