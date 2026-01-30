@@ -29,6 +29,7 @@ namespace MyApp
                             case 1:
                                 Console.WriteLine("Admin Menu");
                                 Console.WriteLine("C. Create New Menu Item");
+                                Console.WriteLine("R. List All Menu Items");
                                 Console.WriteLine("U. Edit Menu Item");
                                 Console.WriteLine("Q. Quit");
 
@@ -52,6 +53,9 @@ namespace MyApp
                                     ItemServiceProxy.Current.AddOrUpdate(item);
 
                                     Console.WriteLine(item);
+                                } else if (subChoice.Equals("R", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    list.ForEach(Console.WriteLine);
                                 }
                                 else if (subChoice.Equals("U", StringComparison.InvariantCultureIgnoreCase))
                                 {
@@ -99,11 +103,6 @@ namespace MyApp
 
 
             } while (!choice.Equals("3", StringComparison.OrdinalIgnoreCase));
-        }
-    
-        static void PrintStudentMenu()
-        {
-
         }
     }
 }
