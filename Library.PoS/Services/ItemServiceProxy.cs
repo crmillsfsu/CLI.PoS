@@ -64,7 +64,17 @@ namespace Library.PoS.Services
 
         }
 
-        
+        public Item? Delete(Item? item)
+        {
+            if (item == null)
+            {
+                return null;
+            }
+
+            items.Remove(item);
+
+            return item;
+        }
 
         public int NextKey
         {
