@@ -1,4 +1,7 @@
 <Solution>
   <Project Path="CLI.PoS/CLI.PoS.csproj" />
   <Project Path="Library.PoS/Library.PoS.csproj" Id="357c52d7-3e5f-4a16-9d84-5b8b12f84d05" />
+  <Project Path="Maui.PoS/Maui.PoS.csproj" Id="1511eb47-db26-4a1d-9870-4eaa3417b4b6">
+    <Deploy Solution="Debug|*" />
+  </Project>
 </Solution>
