@@ -8,5 +8,9 @@
             InitializeComponent();
         }
 
+        private void AdminClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//AdminMenu");
+        }
     }
 }

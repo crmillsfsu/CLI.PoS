@@ -9,7 +9,7 @@
             Spacing="25">
             <Label Text="Welcome to the PoS System!"/>
 
-            <Button Text="Administrative Menu"/>
+            <Button Text="Administrative Menu" Clicked="AdminClicked"/>
             <Button Text="User Menu"/>
         </VerticalStackLayout>
     </ScrollView>
