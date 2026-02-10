@@ -139,5 +139,108 @@ namespace CLI.PoS
 			course.Description = newDesc;
 			Console.WriteLine("Course description updated.");
 		}
+
+		private void AddAssignmentGroup(Course course)
+		{
+			Console.Write("Group name: ");
+			var name = Console.ReadLine();
+
+			var group = new AssignmentGroup
+			{
+				Id = course.AssignmentGroups.Count + 1,
+				Name = name,
+				Weight = 0
+			};
+
+			course.AssignmentGroups.Add(group);
+
+			Console.WriteLine("Group added.");
+		}
+
+		private void AddAssignmentToGroup(Course course)
+		{
+			Console.Write("Group Id: ");
+			int gid = int.Parse(Console.ReadLine());
+
+			var group = course.AssignmentGroups
+							  .FirstOrDefault(g => g.Id == gid);
+
+			if (group == null)
+			{
+				Console.WriteLine("Group not found.");
+				return;
+			}
+
+			Console.Write("Assignment Id: ");
+			int aid = int.Parse(Console.ReadLine());
+
+			var assignment = course.Assignments
+								   .FirstOrDefault(a => a.Id == aid);
+
+			if (assignment == null)
+			{
+				Console.WriteLine("Assignment not found.");
+				return;
+			}
+
+			group.Assignments.Add(assignment);
+
+			Console.WriteLine("Assignment added to group.");
+		}
+
+		private void SetGroupWeight(Course course)
+		{
+			Console.Write("Group Id: ");
+			int id = int.Parse(Console.ReadLine());
+
+			var group = course.AssignmentGroups
+							  .FirstOrDefault(g => g.Id == id);
+
+			if (group == null)
+			{
+				Console.WriteLine("Group not found.");
+				return;
+			}
+
+			Console.Write("Enter weight (0–1): ");
+			double weight = double.Parse(Console.ReadLine());
+
+			group.Weight = weight;
+
+			Console.WriteLine("Weight updated.");
+		}
+
+		public double CalculateFinalGrade(Student student, Course course)
+		{
+			double total = 0;
+
+			foreach (var group in course.AssignmentGroups)
+			{
+				double groupTotal = 0;
+				int count = 0;
+
+				foreach (var assignment in group.Assignments)
+				{
+					var submission = assignment.Submissions
+						.FirstOrDefault(s => s.StudentId == student.Id);
+
+					if (submission != null && submission.Grade.HasValue)
+					{
+						groupTotal += submission.Grade.Value;
+						count++;
+					}
+				}
+
+				if (count > 0)
+				{
+					double groupAvg = groupTotal / count;
+					total += groupAvg * group.Weight;
+				}
+			}
+
+			return total;
+		}
+
+
 	}
 }

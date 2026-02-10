@@ -16,6 +16,9 @@ namespace CLI.PoS
 			{
 				Console.WriteLine("\nStudent Menu:");
 				Console.WriteLine("1. See Course Menu")
+					// var grades = course.GetStudentAssignmentGrades(student.Id);
+					// var avg = course.GetStudentAverage(student.Id);
+					// for opt. 2
 				Console.WriteLine("0. Exit to main menu");
 
 				var choice = Console.ReadLine();

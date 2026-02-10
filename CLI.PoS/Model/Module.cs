@@ -5,6 +5,6 @@ namespace CLI.PoS.Model
 	public class Module
 	{
 		public int Id { get; set; }
-		public List<string> Content { get; set; } = new();
+		public List<ModuleContent> Content { get; set; } = new();
 	}
 }

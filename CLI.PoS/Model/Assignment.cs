@@ -12,5 +12,7 @@ namespace CLI.PoS.Model
 		public DateTime DueDate { get; set; }
 
 		public List<Submission> Submissions { get; set; } = new();
+		public int? GroupId { get; set; }
+
 	}
 }
