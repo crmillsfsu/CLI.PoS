@@ -20,4 +20,14 @@ public partial class AdminMainView : ContentPage
     {
 
     }
+
+    private void AddNewClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//ItemDetails");
+    }
+
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        (BindingContext as AdminMainViewViewModel).Refresh();
+    }
 }

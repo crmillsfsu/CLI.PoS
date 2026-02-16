@@ -15,5 +15,8 @@
         Title="Administration"
         ContentTemplate="{DataTemplate views:AdminMainView}"
         Route="AdminMenu" />
-
+    <ShellContent
+        Title="Menu Item Details"
+        ContentTemplate="{DataTemplate views:ItemDetailView}"
+        Route="ItemDetails" />
 </Shell>
