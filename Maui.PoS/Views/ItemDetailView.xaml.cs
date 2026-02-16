@@ -8,7 +8,6 @@ public partial class ItemDetailView : ContentPage
 	public ItemDetailView()
 	{
 		InitializeComponent();
-        BindingContext = new Item();
 	}
 
     private void GoBackClicked(object sender, EventArgs e)
@@ -20,5 +19,10 @@ public partial class ItemDetailView : ContentPage
     {
         ItemServiceProxy.Current.AddOrUpdate(BindingContext as Item);
         Shell.Current.GoToAsync("//AdminMenu");
+    }
+
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        BindingContext = new Item();
     }
 }
