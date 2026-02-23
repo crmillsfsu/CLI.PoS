@@ -28,6 +28,15 @@ namespace Library.PoS.Services
         private static ItemServiceProxy? instance;
         private static object instanceLock = new object();
 
+        public Item? GetById(int id)
+        {
+            if(id == 0)
+            {
+                return null;
+            }
+
+            return Items.FirstOrDefault(i => i.Id == id);
+        }
         public static ItemServiceProxy Current
         {
             get

@@ -3,9 +3,11 @@ using Library.PoS.Services;
 
 namespace Maui.PoS.Views;
 
+[QueryProperty(nameof(ItemId), "itemId")]
 public partial class ItemDetailView : ContentPage
 {
-	public ItemDetailView()
+    public int ItemId { get; set; }
+    public ItemDetailView()
 	{
 		InitializeComponent();
 	}
@@ -23,6 +25,12 @@ public partial class ItemDetailView : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        BindingContext = new Item();
+        if (ItemId == 0)
+        {
+            BindingContext = new Item();
+        } else
+        {
+            BindingContext = ItemServiceProxy.Current.GetById(ItemId) ?? new Item();
+        }
     }
 }

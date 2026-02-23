@@ -33,11 +33,17 @@ public partial class AdminMainView : ContentPage
 
     private void AddNewClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//ItemDetails");
+        Shell.Current.GoToAsync("//ItemDetails?itemId=0");
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         (BindingContext as AdminMainViewViewModel).Refresh();
+    }
+
+    private void EditClicked(object sender, EventArgs e)
+    {
+        var itemId = (BindingContext as AdminMainViewViewModel)?.SelectedItem?.Id ?? 0;
+        Shell.Current.GoToAsync($"//ItemDetails?itemId={itemId}");
     }
 }

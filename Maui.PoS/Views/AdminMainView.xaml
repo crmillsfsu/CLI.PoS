@@ -55,7 +55,8 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button Text="Add New" Clicked="AddNewClicked"/>
-        <Button Text="Delete" Clicked="DeleteClicked"/>
+        <Button Text="Edit Item" Clicked="EditClicked"/>
+        <Button Text="Delete Item" Clicked="DeleteClicked"/>
         <Button Text="Go Back" Clicked="GoBackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
