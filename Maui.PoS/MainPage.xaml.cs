@@ -12,5 +12,10 @@
         {
             Shell.Current.GoToAsync("//AdminMenu");
         }
+
+        private void UserClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//UserMenu");
+        }
     }
 }

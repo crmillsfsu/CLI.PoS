@@ -10,7 +10,7 @@
             <Label Text="Welcome to the PoS System!"/>
 
             <Button Text="Administrative Menu" Clicked="AdminClicked"/>
-            <Button Text="User Menu"/>
+            <Button Text="User Menu" Clicked="UserClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 
