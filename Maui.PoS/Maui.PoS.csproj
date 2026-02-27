@@ -72,6 +72,12 @@
 	  <MauiXaml Update="Views\ItemDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MenuItemMainView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TablesMainView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\UserMainView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

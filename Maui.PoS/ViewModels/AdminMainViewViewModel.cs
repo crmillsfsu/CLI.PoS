@@ -11,26 +11,8 @@ namespace Maui.PoS.ViewModels
 {
     public class AdminMainViewViewModel: INotifyPropertyChanged
     {
-        public ObservableCollection<Item> Items
-        {
-            get
-            {
-                return new ObservableCollection<Item>(ItemServiceProxy.Current.Items);
-            }
-        }
-
-        public Item? SelectedItem { get; set;  }
-
         public event PropertyChangedEventHandler? PropertyChanged;
-        public void Delete()
-        {
-            ItemServiceProxy.Current.Delete(SelectedItem);
-            Refresh();
-        }
-        public void Refresh()
-        {
-            NotifyPropertyChanged("Items");
-        }
+
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

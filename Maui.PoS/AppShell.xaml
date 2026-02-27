@@ -21,6 +21,14 @@
         Route="UserMenu" />
     <ShellContent
         Title="Menu Item Details"
+        ContentTemplate="{DataTemplate views:MenuItemMainView}"
+        Route="ItemMenu" />
+    <ShellContent
+        Title="Menu Item Details"
         ContentTemplate="{DataTemplate views:ItemDetailView}"
         Route="ItemDetails" />
+    <ShellContent
+        Title="Menu Item Details"
+        ContentTemplate="{DataTemplate views:TablesMainView}"
+        Route="TableMenu" />
 </Shell>
