@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.PoS.Views.TableDetailView"
+             Title="TableDetailView">
+    <VerticalStackLayout>
+        <Label Text="Id:"/>
+        <Entry IsEnabled="False" Text="{Binding Id}"/>
+        <Label Text="Capacity:"/>
+        <Entry Text="{Binding Capacity}"/>
+        <Label Text="Party Size:"/>
+        <Entry Text="{Binding CurrentPartySize}"/>
+        <Label Text="Status:"/>
+        <Picker Text="{Binding Status}"/>
+        <Button Text="OK" Clicked="OkClicked"/>
+        <Button Text="Go Back" Clicked="GoBackClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
