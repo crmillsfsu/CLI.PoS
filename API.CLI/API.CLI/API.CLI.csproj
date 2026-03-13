@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Library.PoS">
+      <HintPath>..\..\Library.PoS\bin\Debug\net10.0\Library.PoS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
